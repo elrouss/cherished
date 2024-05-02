@@ -8,8 +8,6 @@ const btns = question.querySelector(".buttons");
 const yesBtn = btns.querySelector(".btn_yes");
 const noBtn = btns.querySelector(".btn_no");
 
-const audio = document.querySelector(".audio");
-
 const btnsInitialWidth = btns.getBoundingClientRect().width;
 noBtn.style.top = `${Math.floor(noBtn.getBoundingClientRect().top)}px`;
 noBtn.style.left = `${Math.floor(noBtn.getBoundingClientRect().left)}px`;
@@ -45,4 +43,3 @@ const countCoords = () => {
 
 yesBtn.addEventListener("click", onMouseClick);
 noBtn.addEventListener("mouseover", onMouseOver);
-audio.addEventListener("click", onAudioPlay);
