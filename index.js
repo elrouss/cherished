@@ -1,16 +1,37 @@
-const WINDOW_WIDTH = window.innerWidth;
-const WINDOW_HEIGHT = window.innerHeight;
+const { innerWidth: WINDOW_WIDTH, innerHeight: WINDOW_HEIGHT } = window;
 
-const question = document.querySelector(".question");
-const answer = document.querySelector(".answer");
+const form = document.querySelector(".form");
+const content = document.querySelector(".content");
+const question = content.querySelector(".question");
+const answer = content.querySelector(".answer");
 
 const btns = question.querySelector(".buttons");
 const yesBtn = btns.querySelector(".btn_yes");
 const noBtn = btns.querySelector(".btn_no");
 
-const btnsInitialWidth = btns.getBoundingClientRect().width;
-noBtn.style.top = `${Math.floor(noBtn.getBoundingClientRect().top)}px`;
-noBtn.style.left = `${Math.floor(noBtn.getBoundingClientRect().left)}px`;
+setTimeout(() => {
+  document.querySelector(".preloader").classList.add("invisible");
+  document.querySelector(".wrapper").classList.remove("invisible");
+
+  handleBtnsCoords();
+  findBtnsWrapperWidth();
+}, 1000);
+
+const handleBtnsInitialWidth = () => {
+  return btns.getBoundingClientRect().width;
+};
+
+const findBtnsWrapperWidth = () => {
+  const width = handleBtnsInitialWidth();
+
+  if (!width) return;
+  btns.style.width = `${width}px`;
+};
+
+const handleBtnsCoords = () => {
+  noBtn.style.top = `${Math.floor(noBtn.getBoundingClientRect().top)}px`;
+  noBtn.style.left = `${Math.floor(noBtn.getBoundingClientRect().left)}px`;
+};
 
 const onMouseClick = () => {
   question.style.display = "none";
@@ -23,8 +44,6 @@ const onMouseOver = () => {
   noBtn.style.position = "absolute";
   noBtn.style.top = coords.y;
   noBtn.style.left = coords.x;
-
-  btns.style.width = `${btnsInitialWidth}px`;
 };
 
 const countCoords = () => {
@@ -41,5 +60,44 @@ const countCoords = () => {
   }
 };
 
+const updateUrl = (query) => {
+  const url = window.location.origin + "?question=" + encodeURI(query);
+
+  history.pushState(history.state, document.title, url);
+};
+
+const getQuery = (query) => {
+  return new URLSearchParams(window.location.search).get(query);
+};
+
+const updateQuestion = (question) => {
+  document.querySelector(".title").textContent = question + "?";
+};
+
+const handleContent = () => {
+  const question = getQuery("question");
+
+  if (!question) return;
+
+  updateQuestion(question);
+  form.classList.add("invisible");
+  content.classList.remove("invisible");
+  handleBtnsCoords();
+  findBtnsWrapperWidth();
+};
+
+const onSubmit = (evt) => {
+  evt.preventDefault();
+
+  const { value } = evt.target.querySelector("input");
+  if (!value) return;
+
+  updateUrl(value);
+  handleContent();
+};
+
+form.addEventListener("submit", onSubmit);
 yesBtn.addEventListener("click", onMouseClick);
 noBtn.addEventListener("mouseover", onMouseOver);
+
+document.addEventListener("DOMContentLoaded", handleContent);

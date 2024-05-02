@@ -2,6 +2,12 @@
   height: 100%;
 }
 
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
 .page {
   display: flex;
   justify-content: center;
@@ -35,13 +41,12 @@
   border-radius: 4px;
   font-size: 18px;
   background-color: #eca8b4;
-}
-
-.btn_yes {
+  user-select: none;
   cursor: pointer;
 }
 
 .btn_no {
+  cursor: default;
   transition: all 0.5s ease-in-out;
 }
 
@@ -57,4 +62,58 @@
 
 .title {
   text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 450px;
+  min-height: 110px;
+  padding: 15px;
+  border-radius: 8px;
+  filter: drop-shadow(5px 5px 5px #eca8b4);
+  background-color: hsl(210, 20%, 98%);
+}
+
+.form .btn {
+  align-self: center;
+}
+
+.form-question {
+  display: flex;
+  align-items: flex-end;
+  column-gap: 5px;
+}
+
+.form-question * {
+  font-size: 18px;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  width: 100%;
+}
+
+.invisible {
+  display: none;
+}
+
+.preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+  background: radial-gradient(farthest-side, #000 94%, #0000) top/32px 32px
+      no-repeat,
+    conic-gradient(#0000 30%, #000);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 32px), #000 0);
+  animation: s3 1s infinite linear;
 }

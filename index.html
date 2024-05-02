@@ -27,26 +27,41 @@
   </head>
   <body class="page">
     <main>
-      <div class="wrapper">
-        <div class="question">
-          <img
-            class="img"
-            src="./assets/images/cat-cute.gif"
-            alt="Белый котенок, который ждет"
-          />
-          <h1 class="title">Пойдешь со мной гулять? :)</h1>
-          <div class="buttons">
-            <button class="btn btn_yes">Да</button>
-            <button class="btn btn_no" tabindex="-1">Нет</button>
+      <div class="preloader"></div>
+      <div class="wrapper invisible">
+        <form class="form">
+          <div class="form-question">
+            <label class="input-wrapper"
+              ><span class="label">Введите свой вопрос</span
+              ><input class="input" type="text"
+            /></label>
+            <span>?</span>
           </div>
-        </div>
-        <div class="answer">
-          <img
-            class="img"
-            src="./assets/images/happy-dance.gif"
-            alt="Белый котенок, который радуется"
-          />
-          <h1 class="title">Няяяяяя!!!</h1>
+          <button class="btn" type="submit">Сохранить</button>
+        </form>
+        <div class="content invisible">
+          <div class="question">
+            <img
+              class="img"
+              src="./assets/images/cat-cute.gif"
+              alt="Белый котенок, который ждет"
+            />
+            <h1 class="title"></h1>
+            <div class="buttons">
+              <button class="btn btn_yes" type="button">Да</button>
+              <button class="btn btn_no" type="button" tabindex="-1">
+                Нет
+              </button>
+            </div>
+          </div>
+          <div class="answer">
+            <img
+              class="img"
+              src="./assets/images/happy-dance.gif"
+              alt="Белый котенок, который радуется"
+            />
+            <h1 class="title">Няяяяяя!!!</h1>
+          </div>
         </div>
       </div>
     </main>
